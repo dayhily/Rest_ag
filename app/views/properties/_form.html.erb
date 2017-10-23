@@ -1,0 +1,32 @@
+<div id="locationField">
+  <p>   
+    <%= f.label :property_address %><br />
+    <%= f.text_field :property_address, id: :autocomplete, placeholder: :"Enter your full address", onFocus: :"geolocate()" %>
+  </p>
+</div>
+
+  <p>
+    <%= f.label :property_type %><br />
+    <%= f.text_field :property_type, id: :property_type %>
+  </p>
+  
+  <p>
+    <%= f.label :number_of_rooms %><br />
+    <%= f.select :number_of_rooms, [1, 2, 3, 4, 5], id: :number_of_rooms, include_blank: 'Please choose' %>
+    <% f.text_field :number_of_rooms, id: :number_of_rooms %>      
+  </p>
+        
+  
+  <p>
+    <%= f.label :area_size %><br />
+    <%= f.text_field :area_size, id: :area_size %>
+  </p>
+  
+  <p>
+    <%= f.label :property_price %><br />
+    <%= f.text_field :property_price, id: :property_price %>
+  </p>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
