@@ -1,0 +1,27 @@
+<p>
+  <strong>Address:</strong>
+  <%= @property.property_address %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @property.property_type %>
+</p>
+
+<p>
+  <strong>Rooms:</strong>
+  <%= @property.number_of_rooms %>
+</p>
+
+<p>
+  <strong>Size:</strong>
+  <%= @property.area_size %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @property.property_price %>
+</p>
+
+<%= link_to 'Edit', edit_property_path(@property) %> |
+<%= link_to 'Back', properties_path %>
