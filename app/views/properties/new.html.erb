@@ -3,3 +3,15 @@
   <%= render partial: 'form', locals: { f: f } %>
 <%= link_to 'Back', properties_path %>
 <% end %>
+<!-- It does not request google maps javascript if the initAutocomplete function is initialized
+and attached to the windows. -->
+<script type="text/javascript">
+  if(window.google) {
+    initAutocomplete();
+  } else {
+    $.ajax("https://maps.googleapis.com/maps/api/js?key=AIzaSyCFCnFowLyqukQ-jEv2EP245ev78n863y8&libraries=places&callback=initAutocomplete", {
+      crossDomain: true,
+      dataType: 'script'
+    });
+  }  
+</script>
