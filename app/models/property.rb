@@ -1,4 +1,8 @@
 class Property < ApplicationRecord
+	validates :country, presence: true
+	validates :locality, presence: true
+	validates :route, presence: true
+	validates :street_number, presence: true
 	validates :property_type, presence: true
 	validates :property_address, presence: true
 	validates :area_size, numericality: {greater_than_or_equal_to: 0.01}
