@@ -2,6 +2,12 @@
   <p>   
     <%= f.label :property_address %><br />
     <%= f.text_field :property_address, id: :autocomplete, placeholder: :"Enter your full address", onFocus: :"geolocate()" %>
+    <p class='error'>
+      <%= show_errors(@property, :country) %>
+      <%= show_errors(@property, :locality) %>
+      <%= show_errors(@property, :route) %>
+      <%= show_errors(@property, :street_number) %>
+    </p>
   </p>
 </div>
 
@@ -9,23 +15,35 @@
     <%= f.label :property_type %><br />
     <%= f.select :property_type, ['room', 'apartment', 'house', 'land'], id: :property_type, include_blank: 'Please choose' %>
     <% f.text_field :property_type, id: :property_type %>
+    <p class='error'>
+      <%= show_errors(@property, :property_type) %>
+    </p>
   </p>
   
   <p>
     <%= f.label :number_of_rooms %><br />
     <%= f.select :number_of_rooms, [0, 1, 2, 3, 4, 5], id: :number_of_rooms, include_blank: 'Please choose' %>
-    <% f.text_field :number_of_rooms, id: :number_of_rooms %>      
+    <% f.text_field :number_of_rooms, id: :number_of_rooms %>
+    <p class='error'>
+      <%= show_errors(@property, :number_of_rooms) %>
+    </p>
   </p>
         
   
   <p>
     <%= f.label :area_size %><br />
     <%= f.text_field :area_size, id: :area_size %>
+    <p class='error'>
+      <%= show_errors(@property, :area_size) %>
+    </p>
   </p>
   
   <p>
     <%= f.label :property_price %><br />
     <%= f.text_field :property_price, id: :property_price %>
+    <p class='error'>
+      <%= show_errors(@property, :property_price) %>
+    </p>
   </p>
  
   <p>
