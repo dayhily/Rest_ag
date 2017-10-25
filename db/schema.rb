@@ -16,6 +16,12 @@ ActiveRecord::Schema.define(version: 20171023072149) do
   enable_extension "plpgsql"
 
   create_table "properties", force: :cascade do |t|
+    t.string "country"
+    t.string "administrative_area_level_1"
+    t.string "locality"
+    t.string "route"
+    t.string "street_number"
+    t.integer "postal_code"
     t.string "property_type"
     t.string "property_address"
     t.integer "number_of_rooms"
