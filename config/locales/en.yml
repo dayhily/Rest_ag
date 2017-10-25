@@ -31,3 +31,7 @@
 
 en:
   hello: "Hello world"
+  errors:
+    messages:
+      blank: "can`t be blank."
+      not_a_number: "is not a number."
