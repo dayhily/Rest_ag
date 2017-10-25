@@ -7,12 +7,13 @@
 
   <p>
     <%= f.label :property_type %><br />
-    <%= f.text_field :property_type, id: :property_type %>
+    <%= f.select :property_type, ['room', 'apartment', 'house', 'land'], id: :property_type, include_blank: 'Please choose' %>
+    <% f.text_field :property_type, id: :property_type %>
   </p>
   
   <p>
     <%= f.label :number_of_rooms %><br />
-    <%= f.select :number_of_rooms, [1, 2, 3, 4, 5], id: :number_of_rooms, include_blank: 'Please choose' %>
+    <%= f.select :number_of_rooms, [0, 1, 2, 3, 4, 5], id: :number_of_rooms, include_blank: 'Please choose' %>
     <% f.text_field :number_of_rooms, id: :number_of_rooms %>      
   </p>
         
@@ -30,3 +31,10 @@
   <p>
     <%= f.submit %>
   </p>
+  
+  <%= f.hidden_field :country, id: :country %>
+  <%= f.hidden_field :administrative_area_level_1, id: :administrative_area_level_1 %>
+  <%= f.hidden_field :locality, id: :locality %>
+  <%= f.hidden_field :route, id: :route %>
+  <%= f.hidden_field :street_number, id: :street_number %>
+  <%= f.hidden_field :postal_code, id: :postal_code %>
