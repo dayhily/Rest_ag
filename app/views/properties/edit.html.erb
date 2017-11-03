@@ -1,0 +1,7 @@
+<h1>Edit Property</h1>
+<%= form_for :property, url: {action: "update"}, method: :put do |f| %>
+  <%= render partial: 'form', locals: { f: f } %>
+  <%= f.submit %>
+<% end %>  
+
+<%= link_to 'Back', properties_path %>
