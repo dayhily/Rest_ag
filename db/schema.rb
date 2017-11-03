@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 20171023072149) do
     t.integer "property_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "images", default: [], array: true
+    t.index ["images"], name: "index_properties_on_images", unique: true
   end
 
 end
