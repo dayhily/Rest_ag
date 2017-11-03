@@ -24,6 +24,7 @@ class PropertiesController < ApplicationController
 	def update
 		@property=Property.find(params[:id])
 		if @property.update(property_params)
+			@property.save
 			redirect_to @property
 		else
 			render action: 'edit'
@@ -39,12 +40,11 @@ class PropertiesController < ApplicationController
 		@property.destroy
 		redirect_to properties_path
 	end
-	
-private
-    
-  def property_params
-    params.require(:property).permit(:property_address, :property_type, :number_of_rooms,
+
+private  
+	def property_params
+		params.require(:property).permit(:property_address, :property_type, :number_of_rooms,
 		:area_size, :property_price, :country, :administrative_area_level_1, :locality,
-		:route, :street_number, :postal_code)
-  end
+		:route, :street_number, :postal_code, images: [])
+	end
 end
