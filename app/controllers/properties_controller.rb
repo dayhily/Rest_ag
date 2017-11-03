@@ -37,6 +37,7 @@ class PropertiesController < ApplicationController
 	
 	def destroy
 		@property=Property.find(params[:id])
+		@property.remove_images!
 		@property.destroy
 		redirect_to properties_path
 	end
