@@ -1,5 +1,6 @@
 class ImagesUploader < CarrierWave::Uploader::Base
   # Clean up empty directories when the files in them are deleted
+  after :remove, :delete_empty_upstream_dirs
   after :store, :delete_old_tmp_file
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
@@ -57,7 +58,13 @@ class ImagesUploader < CarrierWave::Uploader::Base
     /image\//
   end
   
-
+  def delete_empty_upstream_dirs
+    path = ::File.expand_path(store_dir, root)
+    Dir.delete(path) # fails if path not empty dir, beware ".DS_Store" when in development  
+  rescue SystemCallError
+    true # nothing, the dir is not empty
+  end
+  
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   # def filename
