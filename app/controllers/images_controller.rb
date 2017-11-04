@@ -3,7 +3,7 @@ before_action :set_property
 	def create
 		add_more_images(images_params[:images].to_a)
 		@property.save
-		redirect_to @property	
+		redirect_to @property
 	end
 	
 	def destroy
@@ -31,6 +31,6 @@ private
 		end
 	
 		def images_params
-			params.require(:property).permit({images: []}) # allow nested params as array
+			params.fetch(:property, {}).permit({images: []}) # allow nested params as array
 		end
 end
