@@ -1,12 +1,16 @@
 <!-- Show image thumb if exist -->
 <% if @property.images? %>
   <% @property.images.each_with_index do |image, index| %>
-    <%= image_tag image.thumb.url %>
-    <!--Don`t show a link if this is the only one image -->
-    <% if @property.images.size != 1 %>        
-      <%= link_to "Delete", property_image_path(@property, index), :method => :delete, data: { confirm: "Are you sure you want to delete this image?" } %>
+    <!-- Don`t show image.thumb.url if property not created yet -->
+    <% if @property.id.to_i != 0 %>
+      <%= image_tag image.thumb.url %>
+      <!--Don`t show a link if this is the only one image or property not created yet -->
+      <% if @property.images.size != 1 && @property.id != 0 %>        
+        <%= link_to "Delete", property_image_path(@property, index), :method => :delete, data: { confirm: "Are you sure you want to delete this image?" } %>
+      <% end %>
     <% end %>
   <% end %>
+  <%= @property.images.size.to_i %>
 <% end %>
 
 <div id="locationField">
@@ -56,14 +60,6 @@
       <%= show_errors(@property, :property_price) %>
     </p>
   </p>
-    
-<!--  <p>
-    <%= f.label :images %><br />
-    <%= f.file_field :images, multiple: true %>
-    <p class='error'>
-      <%= show_errors(@property, :images) %>
-    </p>
-  </p>-->
   
   <%= f.hidden_field :country, id: :country %>
   <%= f.hidden_field :administrative_area_level_1, id: :administrative_area_level_1 %>
