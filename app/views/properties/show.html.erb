@@ -8,7 +8,7 @@
 <%= form_for @property, url: property_images_path(@property), method: :post do |f| %>
   <%= f.file_field :images, multiple: true %>
   <p class='error'>
-    <%= show_errors(@property, :images) %>
+    <%= flash[:error] %>
   </p>
   <%= f.submit "Add More Images" %>
 <% end %>

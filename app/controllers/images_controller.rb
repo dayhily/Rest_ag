@@ -3,7 +3,8 @@ before_action :set_property
 	def create
 		add_more_images(images_params[:images].to_a)
 		@property.save
-		redirect_to @property
+		flash[:error] = @property.errors.full_messages.join("\n")
+		redirect_to property_path(@property)
 	end
 	
 	def destroy
