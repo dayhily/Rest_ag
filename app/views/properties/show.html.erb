@@ -1,10 +1,9 @@
 <!-- Show image thumb if exist -->
 <% if @property.images? %>
   <% @property.images.each do |i| %>
-    <%= image_tag i.thumb.url %>
+    <%= link_to(image_tag(i.thumb.url, alt: 'Image'), i.url, target: '_blank')%>
   <% end %>
 <% end %>
-
 <!-- Form for adding more images -->  
 <%= form_for @property, url: property_images_path(@property), method: :post do |f| %>
   <%= f.file_field :images, multiple: true %>
