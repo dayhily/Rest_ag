@@ -4,7 +4,7 @@ before_action :set_property
 		add_more_images(images_params[:images].to_a)
 		@property.save
 		flash[:error] = @property.errors.full_messages.join("\n")
-		redirect_to property_path(@property)
+		redirect_to edit_property_path(@property)
 	end
 	
 	def destroy
@@ -30,7 +30,7 @@ private
 			deleted_image.try(:remove!) # delete image from S3
 			@property.images = remain_images # re-assign back
 		end
-	
+
 		def images_params
 			params.fetch(:property, {}).permit({images: []}) # allow nested params as array
 		end
