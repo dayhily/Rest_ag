@@ -13,8 +13,13 @@
   </thead>
 
   <tbody>
-    <% @properties.each do |property| %>
+    <% @property.each do |property| %>
       <tr>
+        <td>
+          <% if property.images? %>
+            <%= image_tag(property.images.first.url(:small_thumb)) %>
+          <% end %>
+        </td>
         <td><%= property.property_address %></td>
         <td><%= property.property_type %></td>
         <td><%= property.number_of_rooms %></td>
