@@ -15,6 +15,7 @@
 <!-- Form for adding more images -->  
 <p> 
   <%= f.file_field :images, multiple: true %>
+  <!-- Display images validation error from images/controller --> 
   <p class='error'>
     <%= flash[:error] %>
   </p>
