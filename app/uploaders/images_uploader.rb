@@ -1,7 +1,6 @@
 class ImagesUploader < CarrierWave::Uploader::Base
   # Clean up empty directories when the files in them are deleted
   after :remove, :delete_empty_upstream_dirs
-  after :cache, :delete_old_tmp_file
   after :remove, :delete_tmp_dir
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
@@ -16,15 +15,6 @@ class ImagesUploader < CarrierWave::Uploader::Base
 
   def cache_dir
     "#{Rails.root}/public/uploads/tmp"
-  end
-  
-  def cache!(new_file)
-    super
-    @old_tmp_file = new_file
-  end
-  
-  def delete_old_tmp_file(dummy)
-      @old_tmp_file.try :delete
   end
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:

@@ -13,6 +13,7 @@ class PropertiesController < ApplicationController
 			@property.save			
 			redirect_to @property
     else
+			@property.remove_images!
 			render action: 'new'
     end
 	end

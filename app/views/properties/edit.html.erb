@@ -3,7 +3,7 @@
   <%= render partial: 'editimage', locals: { f: f } %>
   <%= f.submit "Add More Images" %>
 <% end %>
-<%= form_for :property, url: {action: "update"}, method: :put do |f| %>
+<%= form_for @property, url: {action: "update"}, method: :put do |f| %>
   <%= render partial: 'form', locals: { f: f } %>
   <%= f.submit %>
 <% end %>
