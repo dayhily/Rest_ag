@@ -1,7 +1,7 @@
 class ImagesUploader < CarrierWave::Uploader::Base
   # Clean up empty directories when the files in them are deleted
   after :remove, :delete_empty_upstream_dirs
-  after :remove, :delete_tmp_dir
+  #after :remove, :delete_tmp_dir
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
@@ -9,13 +9,16 @@ class ImagesUploader < CarrierWave::Uploader::Base
   # Choose what kind of storage to use for this uploader:
   storage :file
   # storage :fog
-  def delete_tmp_dir
-    FileUtils.rm_rf(cache_dir)
-  end
+  
+  # Delete cash directiry after deleting image
+  # def delete_tmp_dir
+  #  FileUtils.rm_rf(cache_dir)
+  # end
 
   def cache_dir
     "#{Rails.root}/public/uploads/tmp"
   end
+  
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
@@ -43,7 +46,7 @@ class ImagesUploader < CarrierWave::Uploader::Base
   end
   
   version :small_thumb, from_version: :thumb do
-    process resize_to_fit: [50, 50]
+    process resize_to_fit: [80, 80]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
@@ -57,6 +60,7 @@ class ImagesUploader < CarrierWave::Uploader::Base
     /image\//
   end
   
+  # Delelete model images when destroy model
   def delete_empty_upstream_dirs
     path = ::File.expand_path(store_dir, root)
     Dir.delete(path) # fails if path not empty dir, beware ".DS_Store" when in development  
@@ -64,6 +68,11 @@ class ImagesUploader < CarrierWave::Uploader::Base
     true # nothing, the dir is not empty
   end
   
+  # Override the filename of the uploaded files:
+  # Avoid using model.id or version_name here, see uploader/store.rb for details.
+  # def filename
+  #   "something.jpg" if original_filename
+  # end
   def filename
     "#{secure_token}.#{file.extension}" if original_filename.present?
   end
@@ -83,10 +92,5 @@ class ImagesUploader < CarrierWave::Uploader::Base
   
       model.instance_variable_get(media_original_filenames_var)[original_filename.to_sym]
     end
-  # Override the filename of the uploaded files:
-  # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  # def filename
-  #   "something.jpg" if original_filename
-  # end
 
 end
