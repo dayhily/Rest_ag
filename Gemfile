@@ -37,6 +37,12 @@ gem 'pg', '~> 0.18'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'carrierwave', '~> 1.2.1'
 gem 'mini_magick', '~> 4.8'
+gem 'fog'
+gem 'net-ssh'
+gem "fog-google"
+gem 'google-api-client', '~> 0.11'
+gem "mime-types"
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
