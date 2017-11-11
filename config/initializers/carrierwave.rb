@@ -1,4 +1,5 @@
 CarrierWave.configure do |config|
+	config.cache_dir = "#{Rails.root}/tmp/uploads"
 	config.fog_provider = 'fog/google',
   config.fog_credentials = {
 		provider:                          'Google',
