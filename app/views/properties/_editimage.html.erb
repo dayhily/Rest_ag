@@ -12,7 +12,8 @@
   <% end %>
 <% end %>
 <!-- Form for adding more images -->  
-<p> 
+<p>
+  <%= f.hidden_field(:images_cache) %>
   <%= f.file_field :images, multiple: true %>
   <!-- Display images validation error from images/controller --> 
   <p class='error'>

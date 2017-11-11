@@ -2,6 +2,7 @@
 <%= form_for @property, url: {action: "create"} do |f| %>
   <%= render partial: 'form', locals: { f: f } %>
   <%= f.label :images %><br />
+  <%= f.hidden_field(:images_cache) %>
   <%= f.file_field :images, multiple: true %>
   <p class='error'>
     <%= show_errors(@property, :images) %>
