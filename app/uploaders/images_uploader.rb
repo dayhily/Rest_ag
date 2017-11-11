@@ -1,28 +1,18 @@
 class ImagesUploader < CarrierWave::Uploader::Base
   # Clean up empty directories when the files in them are deleted
-  after :remove, :delete_empty_upstream_dirs
-  #after :remove, :delete_tmp_dir
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
-  # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
-  
-  # Delete cash directiry after deleting image
-  # def delete_tmp_dir
-  #  FileUtils.rm_rf(cache_dir)
-  # end
 
-  def cache_dir
-    "#{Rails.root}/public/uploads/tmp"
-  end
+  # Choose what kind of storage to use for this uploader:
+  # storage :file
+  storage :fog
   
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "#{mounted_as}/#{model.id}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -58,14 +48,6 @@ class ImagesUploader < CarrierWave::Uploader::Base
   # Let's say we need an uploader that accepts only images.
   def content_type_whitelist
     /image\//
-  end
-  
-  # Delelete model images when destroy model
-  def delete_empty_upstream_dirs
-    path = ::File.expand_path(store_dir, root)
-    Dir.delete(path) # fails if path not empty dir, beware ".DS_Store" when in development  
-    rescue SystemCallError
-    true # nothing, the dir is not empty
   end
   
   # Override the filename of the uploaded files:
