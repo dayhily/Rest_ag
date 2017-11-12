@@ -1,9 +1,18 @@
-<!-- Show image thumb if exist -->
-<% if @property.images? %>
-  <% @property.images.each do |i| %>
-    <%= link_to(image_tag(i.thumb.url, alt: 'Image'), i.url, target: '_blank')%>
-  <% end %>
-<% end %>
+<!-- Bootstrap's thumbnails grid system -->
+<div class="tz-gallery">
+  <div class="row"> 
+        <!-- Show image thumb if exist -->
+        <% if @property.images? %>
+          <% @property.images.each do |i| %>
+            <div class="col-sm-6 col-md-3">
+              <div class="thumbnail">
+                <%= link_to(image_tag(i.thumb.url, alt: 'Image'), i.url, :class=>"lightbox")%>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+  </div>
+</div>
 
 <p>
   <strong>Address:</strong>
@@ -37,3 +46,10 @@
 
 <%= link_to 'Edit', edit_property_path(@property) %> |
 <%= link_to 'Back', properties_path %>
+
+<!-- Bootstrap lightbox script -->
+<script src="/assets/baguetteBox.min.js"></script>
+<!-- Initialize the script -->
+<script>
+    baguetteBox.run('.tz-gallery');
+</script>
