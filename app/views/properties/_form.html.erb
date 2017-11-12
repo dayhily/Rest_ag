@@ -46,6 +46,11 @@
     </p>
   </p>
   
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description, id: :description, size: "30x10" %>
+  </p>
+  
   <%= f.hidden_field :country, id: :country %>
   <%= f.hidden_field :administrative_area_level_1, id: :administrative_area_level_1 %>
   <%= f.hidden_field :locality, id: :locality %>
