@@ -33,5 +33,7 @@ en:
   hello: "Hello world"
   errors:
     messages:
-      blank: "can`t be blank."
+      blank: "can not be blank."
       not_a_number: "is not a number."
+      extension_whitelist_error: "not allowed to upload %{extension} files, allowed types: %{allowed_types}"
+      content_type_whitelist_error: "not allowed to upload %{content_type} files"
