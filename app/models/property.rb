@@ -12,6 +12,6 @@ end
 private
   def number_of_image
     if images.size.to_i > 4
-    errors.add(:images, "You cannot upload more than 4 images")
+    errors.add(:images, I18n.t('errors.messages.number_of_image'))
     end
   end

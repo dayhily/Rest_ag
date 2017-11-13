@@ -31,9 +31,14 @@
 
 en:
   hello: "Hello world"
+  new:
+    property_address:
+      address_sample_html: "The address must include: house number, route, locality, country. <br />
+                      For example: 12 Christopher Street, Staten Island, New York, NY, United States"
   errors:
     messages:
       blank: "can not be blank."
       not_a_number: "is not a number."
+      number_of_image: "can not be loaded more than 4 images"
       extension_whitelist_error: "not allowed to upload %{extension} files, allowed types: %{allowed_types}"
       content_type_whitelist_error: "not allowed to upload %{content_type} files"
