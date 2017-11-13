@@ -1,18 +1,18 @@
 <!-- Bootstrap's thumbnails grid system -->
-<div class="tz-gallery">
-  <div class="row"> 
+<%= content_tag :div, class: "tz-gallery" do %>
+  <%= content_tag :div, class: "row" do %>
         <!-- Show image thumb if exist -->
         <% if @property.images? %>
           <% @property.images.each do |i| %>
-            <div class="col-sm-6 col-md-3">
-              <div class="thumbnail">
+            <%= content_tag :div, class: "col-sm-6 col-md-3" do %>
+              <%= content_tag :div, class: "thumbnail" do %>
                 <%= link_to(image_tag(i.thumb.url, alt: 'Image'), i.url, :class=>"lightbox")%>
-              </div>
-            </div>
+              <% end %>
+            <% end %>
           <% end %>
         <% end %>
-  </div>
-</div>
+  <% end %>
+<% end %>
 
 <p>
   <strong>Address:</strong>

@@ -1,4 +1,4 @@
-<div id="locationField">
+<%= content_tag :div, id: "locationField" do %>
   <p>   
     <%= f.label :property_address %><br />
     <%= f.text_field :property_address, id: :autocomplete, placeholder: :"Enter your full address", onFocus: :"geolocate()" %>
@@ -9,7 +9,7 @@
       <%= show_errors(@property, :street_number) %>
     </p>
   </p>
-</div>
+<% end %>
 
   <p>
     <%= f.label :property_type %><br />
