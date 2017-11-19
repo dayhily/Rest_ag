@@ -1,6 +1,11 @@
 class PropertiesController < ApplicationController
 	def index
-    @property = Property.all
+		# if index form is submitted, then do the method 'search' else show model with 'all' params
+		if params[:commit] = 'Search' 
+			search
+		else
+			@property = Property.all 
+		end
   end
 	
 	def new
@@ -42,6 +47,22 @@ class PropertiesController < ApplicationController
 		@property.destroy
 		redirect_to properties_path
 	end
+	
+	#Search in model by params from index 'properties#search'
+  def search
+    limit = 10
+		country = params[:country] || nil
+    administrative_area = params[:administrative_area] || nil
+    property_type = params[:property_type] || nil
+    @property = Property
+								.where('country LIKE ?'\
+								'and administrative_area_level_1 LIKE ?'\
+								'and property_type LIKE ?',
+								"%#{country}%", "%#{administrative_area}%", "%#{property_type}%")
+								.limit(limit)
+    render action: 'index'
+  end		
+
 
 private  
 	def property_params
