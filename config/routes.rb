@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   root to: "home#index"
   resources :properties do
     resources :images, :only => [:create, :destroy]
+    get 'search', on: :collection
   end
 end
