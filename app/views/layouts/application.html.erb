@@ -4,7 +4,7 @@
     <title>RestAg</title>
     <%= csrf_meta_tags %>
     <!-- Bootstrap - 3.3.7 -->
-    <link rel="stylesheet" href="/assets/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/bootstrap.css">
     <!-- baguettebox - 1.8.1 -->
     <link rel="stylesheet" href="/assets/baguetteBox.min.css">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -40,6 +40,9 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
+    <script>
+        $(document).ready(function() { $("#administrative_area").select2(); });
+    </script>
     <%= yield %>
   </body>
   <%= debug(params) if Rails.env.development? %>
