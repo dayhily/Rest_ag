@@ -1,7 +1,7 @@
 class PropertiesController < ApplicationController
 	def index
 		# if index form is submitted, then do the method 'search' else show model with 'all' params
-		if params[:commit] = 'Search' 
+		if params[:commit] = 'Search'
 			search
 		else
 			@property = Property.all 

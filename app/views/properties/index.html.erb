@@ -2,12 +2,12 @@
 <%= form_tag search_properties_path, method: :get do %>
   <!-- Сhoose unique data from 'country' column with first empty value -->
   <%= label_tag :country %>
-  <%= select_tag :country, options_from_collection_for_select(Property.select('distinct country'), :country, :country), include_blank: true%>
+  <%= select_tag :country, options_from_collection_for_select(Property.select('distinct country'), :country, :country, :selected=> params[:country]), :prompt => 'Select' %>
   <%= label_tag :administrative_area %>
   <%= text_field_tag :administrative_area %>
   <!-- Сhoose unique data from 'property_type' column with first empty value-->  
   <%= label_tag :property_type %>
-  <%= select_tag :property_type, options_from_collection_for_select(Property.select('distinct property_type'), :property_type, :property_type), include_blank: true %>
+  <%= select_tag :property_type, options_from_collection_for_select(Property.select('distinct property_type'), :property_type, :property_type, :selected=> params[:property_type]), :prompt => 'Select' %>
   <%= submit_tag "Search" %>
 <% end %>
 
@@ -37,6 +37,9 @@
         <td><%= property.number_of_rooms %></td>
         <td><%= property.area_size %></td>
         <td><%= property.property_price %></td>
+        <td><%= link_to 'Show', property %></td>
+        <td><%= link_to 'Edit', edit_property_path(property) %></td>
+        <td><%= link_to 'Destroy', property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
