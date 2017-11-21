@@ -4,7 +4,7 @@ class PropertiesController < ApplicationController
 		if params[:commit] = 'Search'
 			search
 		else
-			@property = Property.all 
+			@property = Property.all
 		end
   end
 	
@@ -59,7 +59,7 @@ class PropertiesController < ApplicationController
 								'and administrative_area_level_1 LIKE ?'\
 								'and property_type LIKE ?',
 								"%#{country}%", "%#{administrative_area}%", "%#{property_type}%")
-								.limit(limit)
+								.limit(limit).page params[:page]
     render action: 'index'
   end		
 

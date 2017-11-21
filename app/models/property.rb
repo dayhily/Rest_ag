@@ -7,6 +7,7 @@ class Property < ApplicationRecord
 	validates :images, presence: true
 	validate :number_of_image
 	mount_uploaders :images, ImagesUploader
+	paginates_per 5
 end
 
 private
