@@ -11,7 +11,13 @@
   <%= select_tag :property_type, options_from_collection_for_select(Property.select('distinct property_type'), :property_type, :property_type, :selected=> params[:property_type]), :prompt => 'Select' %>
   <%= submit_tag "Search" %>
 <% end %>
-
+<script>
+  $('select option')
+    .filter(function() {
+      return !this.text || $.trim(this.text).length == 0;
+    })
+  .remove();
+</script> 
 <table>
   <thead>
     <tr>
