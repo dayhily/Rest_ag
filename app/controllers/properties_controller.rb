@@ -54,11 +54,13 @@ class PropertiesController < ApplicationController
 		country = params[:country] || nil
     administrative_area = params[:administrative_area] || nil
     property_type = params[:property_type] || nil
+    locality = params[:locality] || nil
     @property = Property
 								.where('country LIKE ?'\
 								'and administrative_area_level_1 LIKE ?'\
+								'and locality LIKE ?'\
 								'and property_type LIKE ?',
-								"%#{country}%", "%#{administrative_area}%", "%#{property_type}%")
+								"%#{country}%", "%#{administrative_area}%", "%#{locality}%", "%#{property_type}%")
 								.limit(limit).page params[:page]
     render action: 'index'
   end		

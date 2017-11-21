@@ -1,12 +1,13 @@
 <h1>Properties</h1>
 
 <%= form_tag search_properties_path, method: :get do %>
-  <!-- Сhoose unique data from 'country' column with first empty value -->
+  <!-- Select unique data from Property params with first 'Select' value -->
   <%= label_tag :country %>
   <%= select_tag :country, options_from_collection_for_select(Property.select('distinct country'), :country, :country, :selected=> params[:country]), :prompt => 'Select' %>
   <%= label_tag :administrative_area %>
   <%= select_tag :administrative_area, options_from_collection_for_select(Property.select('distinct administrative_area_level_1'), :administrative_area_level_1, :administrative_area_level_1, :selected=> params[:administrative_area]), :prompt => 'Select' %>
-  <!-- Сhoose unique data from 'property_type' column with first empty value -->  
+  <%= label_tag :locality %>
+  <%= select_tag :locality, options_from_collection_for_select(Property.select('distinct locality'), :locality, :locality, :selected=> params[:locality]), :prompt => 'Select' %>
   <%= label_tag :property_type %>
   <%= select_tag :property_type, options_from_collection_for_select(Property.select('distinct property_type'), :property_type, :property_type, :selected=> params[:property_type]), :prompt => 'Select' %>
   <%= submit_tag "Search" %>

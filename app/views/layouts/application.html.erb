@@ -41,7 +41,10 @@
       </div><!-- /.container-fluid -->
     </nav>
     <script>
-        $(document).ready(function() { $("#administrative_area").select2(); });
+      $(document).ready(function() {
+        $("#administrative_area").select2();
+        $("#locality").select2();
+      });
     </script>
     <%= yield %>
   </body>
