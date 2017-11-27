@@ -10,18 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171112061909) do
+ActiveRecord::Schema.define(version: 20171125081957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "properties", force: :cascade do |t|
+  create_table "addresses", force: :cascade do |t|
     t.string "country"
     t.string "administrative_area_level_1"
     t.string "locality"
     t.string "route"
     t.string "street_number"
     t.integer "postal_code"
+    t.bigint "property_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_addresses_on_property_id"
+  end
+
+  create_table "properties", force: :cascade do |t|
     t.string "property_type"
     t.string "property_address"
     t.integer "number_of_rooms"
@@ -31,7 +38,7 @@ ActiveRecord::Schema.define(version: 20171112061909) do
     t.datetime "updated_at", null: false
     t.string "images", default: [], array: true
     t.string "description"
-    t.index ["images"], name: "index_properties_on_images", unique: true
+    t.index ["images"], name: "index_properties_on_images"
   end
 
 end
