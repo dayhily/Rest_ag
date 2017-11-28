@@ -3,11 +3,11 @@
 <%= form_tag search_properties_path, method: :get do %>
   <!-- Select unique data from Property params with first 'Select' value -->
   <%= label_tag :country %>
-  <%= select_tag :country, options_from_collection_for_select(Property.select('distinct country'), :country, :country, :selected=> params[:country]), :prompt => 'Select' %>
+  <%= select_tag :country, options_from_collection_for_select(Address.select('distinct country'), :country, :country, :selected=> params[:country]), :prompt => 'Select' %>
   <%= label_tag :administrative_area %>
-  <%= select_tag :administrative_area, options_from_collection_for_select(Property.select('distinct administrative_area_level_1'), :administrative_area_level_1, :administrative_area_level_1, :selected=> params[:administrative_area]), :prompt => 'Select' %>
+  <%= select_tag :administrative_area, options_from_collection_for_select(Address.select('distinct administrative_area_level_1'), :administrative_area_level_1, :administrative_area_level_1, :selected=> params[:administrative_area]), :prompt => 'Select' %>
   <%= label_tag :locality %>
-  <%= select_tag :locality, options_from_collection_for_select(Property.select('distinct locality'), :locality, :locality, :selected=> params[:locality]), :prompt => 'Select' %>
+  <%= select_tag :locality, options_from_collection_for_select(Address.select('distinct locality'), :locality, :locality, :selected=> params[:locality]), :prompt => 'Select' %>
   <%= label_tag :property_type %>
   <%= select_tag :property_type, options_from_collection_for_select(Property.select('distinct property_type'), :property_type, :property_type, :selected=> params[:property_type]), :prompt => 'Select' %>
   <%= submit_tag "Search" %>
@@ -40,7 +40,13 @@
             <%= image_tag(property.images.first.url(:small_thumb)) %>
           <% end %>
         </td>
-        <td><%= property.property_address %></td>
+        <td>
+            <%= property.address.country %>,
+            <%= property.address.administrative_area_level_1 %>,
+            <%= property.address.locality %>,
+            <%= property.address.route %>,
+            <%= property.address.street_number %>
+        </td>
         <td><%= property.property_type %></td>
         <td><%= property.number_of_rooms %></td>
         <td><%= property.area_size %></td>
@@ -52,5 +58,5 @@
     <% end %>
   </tbody>
 </table>
-<%= page_entries_info @property %>
 <%= paginate @property %>
+<%= page_entries_info @property %>

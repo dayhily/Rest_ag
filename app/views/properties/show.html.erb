@@ -16,7 +16,11 @@
 
 <p>
   <strong>Address:</strong>
-  <%= @property.property_address %>
+  <%= @property.address.country %>,
+  <%= @property.address.administrative_area_level_1 %>,
+  <%= @property.address.locality %>,
+  <%= @property.address.route %>,
+  <%= @property.address.street_number %>
 </p>
 
 <p>
