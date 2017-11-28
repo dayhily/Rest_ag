@@ -1,5 +1,5 @@
 class Property < ApplicationRecord
-	has_one :address, inverse_of: :property
+	has_one :address, inverse_of: :property, dependent: :destroy
 	accepts_nested_attributes_for :address, :allow_destroy => true
 	#validates_presence_of :country, :locality, :route, :street_number
 	#validates :property_type, presence: true
