@@ -1,24 +1,32 @@
 <h1>Properties</h1>
+<script>
+  $(document).ready(function() {
+    $("#administrative_area").select2();
+    $("#locality").select2();
+  });
+</script>
 
 <%= form_tag search_properties_path, method: :get do %>
   <!-- Select unique data from Property params with first 'Select' value -->
   <%= label_tag :country %>
   <%= select_tag :country, options_from_collection_for_select(Address.select('distinct country'), :country, :country, :selected=> params[:country]), :prompt => 'Select' %>
   <%= label_tag :administrative_area %>
-  <%= select_tag :administrative_area, options_from_collection_for_select(Address.select('distinct administrative_area_level_1'), :administrative_area_level_1, :administrative_area_level_1, :selected=> params[:administrative_area]), :prompt => 'Select' %>
+  <%= select_tag :administrative_area, grouped_options_for_select(@address_grouped, params[:administrative_area]), :prompt => 'Select' %>
   <%= label_tag :locality %>
   <%= select_tag :locality, options_from_collection_for_select(Address.select('distinct locality'), :locality, :locality, :selected=> params[:locality]), :prompt => 'Select' %>
   <%= label_tag :property_type %>
   <%= select_tag :property_type, options_from_collection_for_select(Property.select('distinct property_type'), :property_type, :property_type, :selected=> params[:property_type]), :prompt => 'Select' %>
   <%= submit_tag "Search" %>
 <% end %>
+
 <script>
   $('select option')
     .filter(function() {
       return !this.text || $.trim(this.text).length == 0;
     })
   .remove();
-</script> 
+</script>
+
 <table>
   <thead>
     <tr>

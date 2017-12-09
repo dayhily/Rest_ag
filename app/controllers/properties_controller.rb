@@ -51,6 +51,13 @@ class PropertiesController < ApplicationController
 	
 	#Search in model by params from index 'properties#search'
   def search
+				#Create grouped optrions for administrative_area select tag
+		@address = Address.select('distinct country, administrative_area_level_1').to_a
+		@address_grouped =  @address.inject({}) do |options, f|
+			(options[f.country] ||= []) << [f.administrative_area_level_1]
+			options
+		end
+			
     limit = 10
 		country = params[:country] || nil
     administrative_area = params[:administrative_area] || nil
@@ -65,10 +72,9 @@ class PropertiesController < ApplicationController
 								'and property_type LIKE ?',
 								"%#{country}%", "%#{administrative_area}%", "%#{locality}%", "%#{property_type}%")
 								.limit(limit).page params[:page]
-								
+		
     render action: 'index'
-  end		
-
+  end
 
 private
 	def property_params
