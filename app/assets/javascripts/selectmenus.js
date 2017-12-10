@@ -1,4 +1,6 @@
-jQuery(function() {
+// "(document).on('turbolinks:load', function() {})"
+// hook in to an event fired by Turbolinks for every page visit
+$(document).on('turbolinks:load', function() {
   var areas = $('#administrative_area').html();
   console.log(areas);
   return $('#country').change(function() {
