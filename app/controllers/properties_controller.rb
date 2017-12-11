@@ -53,12 +53,18 @@ class PropertiesController < ApplicationController
 	#Search in model by params from index 'properties#search'
   def search
 		#Create grouped optrions for administrative_area select tag
-		@address = Address.select('distinct country, administrative_area_level_1')
-		@address_grouped =  @address.inject({}) do |options, f|
+		@opt1 = Address.select('distinct country, administrative_area_level_1')
+		@opt1_grouped =  @opt1.inject({}) do |options, f|
 			(options[f.country] ||= []) << [f.administrative_area_level_1]
 			options
 		end
-			
+		
+		@opt2 = Address.select('distinct administrative_area_level_1, locality')
+		@opt2_grouped =  @opt2.inject({}) do |options, f|
+			(options[f.administrative_area_level_1] ||= []) << [f.locality]
+			options
+		end
+					
     limit = 10
 		country = params[:country] || nil
     administrative_area = params[:administrative_area] || nil
