@@ -4,12 +4,12 @@
     <p>
       <%= t('new.property_address.address_sample_html') %>
     </p>
-    <%= f.text_field :id, :size => 50, id: :autocomplete, placeholder: :"Enter your full address", onFocus: :"geolocate()" %>
+    <%= f.text_field :property_address, :value => '', :size => 50, id: :autocomplete, placeholder: :"Enter your full address", onFocus: :"geolocate()" %>
     <p class='error'>
-      <%= show_errors(@property, :country) %>
-      <%= show_errors(@property, :locality) %>
-      <%= show_errors(@property, :route) %>
-      <%= show_errors(@property, :street_number) %>
+      <%= show_errors(@property.address, :country) %>
+      <%= show_errors(@property.address, :locality) %>
+      <%= show_errors(@property.address, :route) %>
+      <%= show_errors(@property.address, :street_number) %>
     </p>
   </p>
 <% end %>

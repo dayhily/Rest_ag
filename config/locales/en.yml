@@ -34,7 +34,8 @@ en:
   new:
     property_address:
       address_sample_html: "The address must include: house number, route, locality, country. <br />
-                      For example: 12 Christopher Street, Staten Island, New York, NY, United States"
+                      For example: 12 Christopher Street, Staten Island, New York, NY, United States. <br />
+                      Select it from drop-down list."
   errors:
     messages:
       blank: "can not be blank."
