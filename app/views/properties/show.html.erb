@@ -4,7 +4,7 @@
         <!-- Show image thumb if exist -->
         <% if @property.images? %>
           <% @property.images.each do |i| %>
-            <%= content_tag :div, class: "col-sm-6 col-md-3" do %>
+            <%= content_tag :div, class: "col-sm-6 col-md-2" do %>
               <%= content_tag :div, class: "thumbnail" do %>
                 <%= link_to(image_tag(i.thumb.url, alt: 'Image'), i.url, :class=>"lightbox")%>
               <% end %>

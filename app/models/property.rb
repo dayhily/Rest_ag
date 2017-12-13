@@ -14,7 +14,7 @@ end
 private
 	# Limitation for :number_of_image
   def number_of_image
-    if images.size.to_i > 5
+    if images.size.to_i > 6
     errors.add(:images, I18n.t('errors.messages.number_of_image'))
     end
   end
