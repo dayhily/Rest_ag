@@ -1,0 +1,24 @@
+<h1>Contact us</h1>
+
+<%= form_for :contact, url: {action: "create"} do |f| %>
+  <p>
+    <%= f.label :email %><br>
+    <%= f.text_field :email %><br>
+    <p class='error'>
+      <%= show_errors(@contact, :email) %>
+    </p>
+   </p>
+    
+  <p>
+    <%= f.label :message %><br>
+    <%= f.text_area :message %>
+    <p class='error'>
+      <%= show_errors(@contact, :message) %>
+    </p>
+  </p>
+    
+  <p>
+    <%= f.submit 'Send message' %><br>
+  </p>
+<% end %>
+  
