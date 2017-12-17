@@ -24,7 +24,7 @@
   <%= select_tag :locality, grouped_options_for_select(@opt2_grouped, params[:locality]), prompt: "Select" %>
   <%= label_tag :property_type %>
   <%= select_tag :property_type, options_from_collection_for_select(Property.select('distinct property_type'), :property_type, :property_type, :selected=> params[:property_type]), prompt: "Select" %>
-  <%= submit_tag "Search" %>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
 <% end %>
 
 <script>
@@ -35,7 +35,7 @@
   .remove();
 </script>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Photo:</th>
@@ -67,8 +67,8 @@
         <td><%= property.number_of_rooms %></td>
         <td><%= property.area_size %></td>
         <td><%= property.property_price %></td>
-        <td>|<%= link_to 'Show', property %>|</td>
-        <td><%= link_to 'Edit', edit_property_path(property) %>|</td>
+        <td><%= link_to 'Show', property %></td>
+        <td><%= link_to 'Edit', edit_property_path(property) %></td>
         <td><%= link_to 'Destroy', property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
