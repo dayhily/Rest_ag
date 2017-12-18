@@ -11,58 +11,97 @@
     });
   });
 </script>
-
-<%= content_tag :div, id: "locationField" do %>
-  <p>   
-    <%= f.label :property_address %><br />
-    <p>
-      <%= t('new.property_address.address_sample_html') %>
-    </p>
-    <%= f.text_field :property_address, :value => '', :size => 50, id: :autocomplete, prompt: :"Enter your full address", onFocus: :"geolocate()" %>
-      <p class='alert-danger'>
-        <%= show_errors(@property.address, :country) %>
-        <%= show_errors(@property.address, :locality) %>
-        <%= show_errors(@property.address, :route) %>
-        <%= show_errors(@property.address, :street_number) %>
+<table class="table">
+  <tr>
+    <td>
+      <%= content_tag :div, id: "locationField" do %>
+        <p>   
+          <%= f.label :property_address %><br />
+          <p>
+            <%= t('new.property_address.address_sample_html') %>
+          </p>
+          <%= f.text_field :property_address, :value => '', :size => 50, id: :autocomplete, prompt: :"Enter your full address", onFocus: :"geolocate()" %>
+            <p class='alert-danger'>
+              <%= show_errors(@property.address, :country) %>
+              <%= show_errors(@property.address, :locality) %>
+              <%= show_errors(@property.address, :route) %>
+              <%= show_errors(@property.address, :street_number) %>
+            </p>
+        </p>
+      <% end %>
+    </td>
+    <td rowspan="4">
+      <p>
+        <%= f.label :description %><br />
+        <%= f.text_area :description, id: :description, size: "30x10" %>
       </p>
-  </p>
-<% end %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>
+        <%= f.label :property_type %><br />
+        <%= f.select :property_type, ['room', 'apartment', 'house'], id: :property_type, prompt: 'Select' %>
+        <% f.text_field :property_type, id: :property_type %>
+        <p class='alert-danger'>
+          <%= show_errors(@property, :property_type) %>
+        </p>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>
+        <%= f.label :number_of_rooms %><br />
+        <%= f.select :number_of_rooms, [0, 1, 2, 3, 4, 5], id: :number_of_rooms, prompt: 'Select' %>
+        <% f.text_field :number_of_rooms, id: :number_of_rooms %>
+        <p class='alert-danger'>
+          <%= show_errors(@property, :number_of_rooms) %>
+        </p>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>
+        <%= f.label :area_size %><br />
+        <%= f.text_field :area_size, id: :area_size %>
+        <p class='alert-danger'>
+          <%= show_errors(@property, :area_size) %>
+        </p>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>
+        <%= f.label :property_price %><br />
+        <%= f.text_field :property_price, id: :property_price %>
+        <p class='alert-danger'>
+          <%= show_errors(@property, :property_price) %>
+        </p>
+      </p>
+    </td>
+    <td>
+      <p>
+        <%= f.label :images %><br />
+        <%= f.hidden_field(:images_cache) %>
+        <%= f.file_field :images, class: "btn btn-primary", multiple: true %>
+        <p class='error'>
+          <%= show_errors(@property, :images) %>
+        </p>
+      </p>
+    </td>
+  </tr>
+</table>
 
-  <p>
-    <%= f.label :property_type %><br />
-    <%= f.select :property_type, ['room', 'apartment', 'house'], id: :property_type, prompt: 'Select' %>
-    <% f.text_field :property_type, id: :property_type %>
-    <p class='alert-danger'>
-      <%= show_errors(@property, :property_type) %>
-    </p>
-  </p>
+
   
-  <p>
-    <%= f.label :number_of_rooms %><br />
-    <%= f.select :number_of_rooms, [0, 1, 2, 3, 4, 5], id: :number_of_rooms, prompt: 'Select' %>
-    <% f.text_field :number_of_rooms, id: :number_of_rooms %>
-    <p class='alert-danger'>
-      <%= show_errors(@property, :number_of_rooms) %>
-    </p>
-  </p>     
+     
   
-  <p>
-    <%= f.label :area_size %><br />
-    <%= f.text_field :area_size, id: :area_size %>
-    <p class='alert-danger'>
-      <%= show_errors(@property, :area_size) %>
-    </p>
-  </p>
+
   
-  <p>
-    <%= f.label :property_price %><br />
-    <%= f.text_field :property_price, id: :property_price %>
-    <p class='alert-danger'>
-      <%= show_errors(@property, :property_price) %>
-    </p>
-  </p>
+
   
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_area :description, id: :description, size: "30x10" %>
-  </p>
+
+  

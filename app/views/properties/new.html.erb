@@ -11,19 +11,15 @@
   <% end %>
   
   <%= render partial: 'form', locals: { f: f } %>
-  <%= f.label :images %><br />
-  <%= f.hidden_field(:images_cache) %>
-  <%= f.file_field :images, class: "btn btn-primary", multiple: true %>
-  <p class='error'>
-    <%= show_errors(@property, :images) %>
-  </p>
+
   <%= f.submit class: "btn btn-primary" %>
+  <nav aria-label="...">
+    <ul class="pager">
+      <li><%= link_to 'Back', properties_path %></li>
+    </ul>
+  </nav>
 <% end %>
-<nav aria-label="...">
-  <ul class="pager">
-    <li><%= link_to 'Back', properties_path %></li>
-  </ul>
-</nav>
+
 <!-- It does not request google maps javascript
 if the initAutocomplete function is initialized
 and attached to the windows. -->

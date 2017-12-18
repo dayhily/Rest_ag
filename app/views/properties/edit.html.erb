@@ -6,9 +6,9 @@
 <%= form_for @property, url: {action: "update"}, method: :put do |f| %>
   <%= render partial: 'form', locals: { f: f } %>
   <%= f.submit %>
+  <nav aria-label="...">
+    <ul class="pager">
+      <li><%= link_to 'Back', properties_path %></li>
+    </ul>
+  </nav>
 <% end %>
-<nav aria-label="...">
-  <ul class="pager">
-    <li><%= link_to 'Back', properties_path %></li>
-  </ul>
-</nav>
