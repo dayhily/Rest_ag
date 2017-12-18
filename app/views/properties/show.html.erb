@@ -47,9 +47,12 @@
   <strong>Description:</strong>
   <%= @property.description %>
 </p>
-
-<%= link_to 'Edit', edit_property_path(@property) %>
-<%= link_to 'Back', properties_path %>
+<nav aria-label="...">
+  <ul class="pager">
+    <li><%= link_to 'Edit', edit_property_path(@property) %></li>
+    <li><%= link_to 'Back', properties_path %></li>
+  </ul>
+</nav>
 
 <!-- Bootstrap lightbox script -->
 <script src="/assets/baguetteBox.min.js"></script>

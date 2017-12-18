@@ -19,8 +19,11 @@
   </p>
   <%= f.submit class: "btn btn-primary" %>
 <% end %>
-<%= link_to 'Back', properties_path %>
-
+<nav aria-label="...">
+  <ul class="pager">
+    <li><%= link_to 'Back', properties_path %></li>
+  </ul>
+</nav>
 <!-- It does not request google maps javascript
 if the initAutocomplete function is initialized
 and attached to the windows. -->
