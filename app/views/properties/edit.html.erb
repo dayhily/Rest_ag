@@ -1,11 +1,10 @@
 <h1>Edit Property</h1>
 <%= form_for @property, url: property_images_path(@property), method: :post do |f| %>
   <%= render partial: 'editimage', locals: { f: f } %>
-  <%= f.submit "Add More Images" %>
 <% end %>
 <%= form_for @property, url: {action: "update"}, method: :put do |f| %>
   <%= render partial: 'form', locals: { f: f } %>
-  <%= f.submit %>
+  <%= f.submit class: "btn btn-primary" %>
   <nav aria-label="...">
     <ul class="pager">
       <li><%= link_to 'Back', properties_path %></li>
