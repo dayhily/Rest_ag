@@ -87,7 +87,7 @@
         <%= f.label :images %><br />
         <%= f.hidden_field(:images_cache) %>
         <%= f.file_field :images, class: "btn btn-primary", multiple: true %>
-        <p class='error'>
+        <p class='alert-danger'>
           <%= show_errors(@property, :images) %>
         </p>
       </p>
