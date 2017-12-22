@@ -13,19 +13,33 @@
     });
   });
 </script>
+<table width="100%" align="center" class="table-property">
+  <tr>
+    <%= form_tag search_properties_path, method: :get do %>
+      <!-- Select unique data from Property params with first 'Select' value -->      
+      <th>
+        <%= label_tag :country %>
+        <%= select_tag :country, options_from_collection_for_select(Address.select('distinct country'), :country, :country, :selected=> params[:country]), prompt: "Select" %>
+      </th>
+      <th>
+        <%= label_tag :administrative_area %>
+        <%= select_tag :administrative_area, grouped_options_for_select(@opt1_grouped, params[:administrative_area]), prompt: "Select" %>
+      </th>
+      <th>
+        <%= label_tag :locality %>
+        <%= select_tag :locality, grouped_options_for_select(@opt2_grouped, params[:locality]), prompt: "Select" %>
+      </th>
+      <th>
+        <%= label_tag :property_type %>
+        <%= select_tag :property_type, options_from_collection_for_select(Property.select('distinct property_type'), :property_type, :property_type, :selected=> params[:property_type]), prompt: "Select" %>
+      </th>
+      <th>
+        <%= submit_tag "Search", class: "btn btn-primary" %>
+      </th>
+    <% end %>
+  </tr>
+</table>
 
-<%= form_tag search_properties_path, method: :get do %>
-  <!-- Select unique data from Property params with first 'Select' value -->
-  <%= label_tag :country %>
-  <%= select_tag :country, options_from_collection_for_select(Address.select('distinct country'), :country, :country, :selected=> params[:country]), prompt: "Select" %>
-  <%= label_tag :administrative_area %>
-  <%= select_tag :administrative_area, grouped_options_for_select(@opt1_grouped, params[:administrative_area]), prompt: "Select" %>
-  <%= label_tag :locality %>
-  <%= select_tag :locality, grouped_options_for_select(@opt2_grouped, params[:locality]), prompt: "Select" %>
-  <%= label_tag :property_type %>
-  <%= select_tag :property_type, options_from_collection_for_select(Property.select('distinct property_type'), :property_type, :property_type, :selected=> params[:property_type]), prompt: "Select" %>
-  <%= submit_tag "Search", class: "btn btn-primary" %>
-<% end %>
 
 <script>
   $('select option')
@@ -35,7 +49,7 @@
   .remove();
 </script>
 
-<table class="table">
+<table width="100%" align="center" class="table-striped table-property">
   <thead>
     <tr>
       <th>Photo:</th>
@@ -72,7 +86,9 @@
         <td><%= link_to 'Destroy', property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+    <tr>
+      <td><%= page_entries_info @property %></td>
+    </tr>
   </tbody>
 </table>
 <%= paginate @property %>
-<%= page_entries_info @property %>

@@ -4,10 +4,4 @@
 <% end %>
 <%= form_for @property, url: {action: "update"}, method: :put do |f| %>
   <%= render partial: 'form', locals: { f: f } %>
-  <%= f.submit class: "btn btn-primary" %>
-  <nav aria-label="...">
-    <ul class="pager">
-      <li><%= link_to 'Back', properties_path %></li>
-    </ul>
-  </nav>
 <% end %>

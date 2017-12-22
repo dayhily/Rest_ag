@@ -11,7 +11,7 @@
     });
   });
 </script>
-<table class="table">
+<table align="center" class="table-property">
   <tr>
     <td>
       <%= content_tag :div, id: "locationField" do %>
@@ -21,12 +21,20 @@
             <%= t('new.property_address.address_sample_html') %>
           </p>
           <%= f.text_field :property_address, :value => '', :size => 50, id: :autocomplete, prompt: :"Enter your full address", onFocus: :"geolocate()" %>
-            <p class='alert-danger'>
+            <div class='alert-danger'>
+              <p>
               <%= show_errors(@property.address, :country) %>
+              </p>
+              <p>
               <%= show_errors(@property.address, :locality) %>
+              </p>
+              <p>
               <%= show_errors(@property.address, :route) %>
+              </p>
+              <p>
               <%= show_errors(@property.address, :street_number) %>
-            </p>
+              </p>
+            </div>
         </p>
       <% end %>
     </td>
@@ -93,6 +101,17 @@
       </p>
     </td>
   </tr>
+  <tr>
+    <td colspan="2">
+      <%= f.submit class: "btn btn-primary" %>
+      <nav aria-label="...">
+        <ul class="pager">
+          <li><%= link_to 'Back', properties_path %></li>
+        </ul>
+      </nav>  
+    </td>
+    <td></td>
+  </tr>    
 </table>
 
 

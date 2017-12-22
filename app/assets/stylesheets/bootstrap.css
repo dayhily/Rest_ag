@@ -1078,7 +1078,6 @@ th {
 }
 html {
   font-size: 10px;
-
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
@@ -1086,7 +1085,9 @@ body {
   font-size: 14px;
   line-height: 1.42857143;
   color: #333;
+  background: url(https://storage.googleapis.com/test179706/property/images/bg/bg.jpg) no-repeat center center fixed; 
   background-color: #fff;
+  background-size: 100%;
 }
 input,
 button,
@@ -2439,6 +2440,27 @@ table th[class*="col-"] {
 .table-hover > tbody > tr.danger:hover > th {
   background-color: #ebcccc;
 }
+
+.table-borderless>thead>tr>th
+.table-borderless>thead>tr>td
+.table-borderless>tbody>tr>th
+.table-borderless>tbody>tr>td
+.table-borderless>tfoot>tr>th
+.table-borderless>tfoot>tr>td {
+    border: none;
+}
+
+.table-property, .table-property td{
+  border: 5px solid rgb(255,255,255);
+  border: 5px solid rgba(255,255,255,0.0);
+  -webkit-background-clip: padding-box; /* for Safari */
+  background-clip: padding-box; /* for IE9+, Firefox 4+, Opera, Chrome */
+  color: #000000;
+  background:rgb(255,255,255);     /* IE6/7/8 */
+  filter:alpha(opacity=50);     /* IE6/7/8 */
+  background:rgba(255,255,255,0.5);  /* Modern Browsers */
+}
+
 .table-responsive {
   min-height: .01%;
   overflow-x: auto;
