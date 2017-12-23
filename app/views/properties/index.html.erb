@@ -11,6 +11,12 @@
     $("#property_type").select2({
       minimumResultsForSearch: -1
     });
+    $(".clearSelect2").on("click", function () {
+      $("#country").val(null).trigger("change"); 
+      $("#administrative_area").val(null).trigger("change");
+      $("#locality").val(null).trigger("change");
+      $("#property_type").val(null).trigger("change");
+    });
   });
 </script>
 <table width="100%" align="center" class="table-property">
@@ -32,6 +38,9 @@
       <th>
         <%= label_tag :property_type %>
         <%= select_tag :property_type, options_from_collection_for_select(Property.select('distinct property_type'), :property_type, :property_type, :selected=> params[:property_type]), prompt: "Select" %>
+      </th>
+      <th>
+        <%= button_tag "Clear search", class: "btn btn-primary clearSelect2" %>
       </th>
       <th>
         <%= submit_tag "Search", class: "btn btn-primary" %>
