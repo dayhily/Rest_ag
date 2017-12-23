@@ -1,52 +1,72 @@
 <!-- Bootstrap's thumbnails grid system -->
 <%= content_tag :div, class: "tz-gallery" do %>
   <%= content_tag :div, class: "row" do %>
-        <!-- Show image thumb if exist -->
-        <% if @property.images? %>
-          <% @property.images.each do |i| %>
-            <%= content_tag :div, class: "col-sm-6 col-md-2" do %>
-              <%= content_tag :div, class: "thumbnail" do %>
-                <%= link_to(image_tag(i.thumb.url, alt: 'Image'), i.url, :class=>"lightbox")%>
-              <% end %>
-            <% end %>
+    <!-- Show image thumb if exist -->
+    <% if @property.images? %>
+      <% @property.images.each do |i| %>
+        <%= content_tag :div, class: "col-sm-6 col-md-2" do %>
+          <%= content_tag :div, class: "thumbnail" do %>
+            <%= link_to(image_tag(i.thumb.url, alt: 'Image'), i.url, :class=>"lightbox")%>
           <% end %>
         <% end %>
+      <% end %>
+    <% end %>
   <% end %>
 <% end %>
-
-<p>
-  <strong>Address:</strong>
-  <%= @property.address.country %>,
-  <%= @property.address.administrative_area_level_1 %>,
-  <%= @property.address.locality %>,
-  <%= @property.address.route %>,
-  <%= @property.address.street_number %>
-</p>
-
-<p>
-  <strong>Type:</strong>
-  <%= @property.property_type %>
-</p>
-
-<p>
-  <strong>Rooms:</strong>
-  <%= @property.number_of_rooms %>
-</p>
-
-<p>
-  <strong>Size:</strong>
-  <%= @property.area_size %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @property.property_price %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @property.description %>
-</p>
+<table align="center" class="table-property">
+  <tr>
+    <td>
+      <p>
+        <strong>Address:</strong>
+        <%= @property.address.country %>,
+        <%= @property.address.administrative_area_level_1 %>,
+        <%= @property.address.locality %>,
+        <%= @property.address.route %>,
+        <%= @property.address.street_number %>
+      </p>
+    </td>
+    <tr>
+      <td>
+        <p>
+          <strong>Type:</strong>
+          <%= @property.property_type %>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>
+          <strong>Rooms:</strong>
+          <%= @property.number_of_rooms %>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>
+          <strong>Size:</strong>
+          <%= @property.area_size %>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>
+          <strong>Price:</strong>
+          <%= @property.property_price %>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>
+          <strong>Description:</strong>
+          <%= @property.description %>
+        </p>
+      </td>
+    </tr>
+  </tr>
+</table>
 <nav aria-label="...">
   <ul class="pager">
     <li><%= link_to 'Edit', edit_property_path(@property) %></li>
