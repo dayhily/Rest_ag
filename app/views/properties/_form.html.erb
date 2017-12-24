@@ -1,16 +1,3 @@
-<script>
-  $(document).ready(function() {
-    $('.js-example-basic-single').select2();
-    $("#property_property_type").select2({
-      width: '195px',
-      minimumResultsForSearch: -1
-    });
-    $("#property_number_of_rooms").select2({
-      width: '195px',
-      minimumResultsForSearch: -1
-    });
-  });
-</script>
 <table align="center" class="table-property">
   <tr>
     <td>
@@ -20,7 +7,7 @@
           <p>
             <%= t('new.property_address.address_sample_html') %>
           </p>
-          <%= f.text_field :property_address, :value => '', :size => 50, id: :autocomplete, prompt: :"Enter your full address", onFocus: :"geolocate()" %>
+          <%= f.text_field :property_address, :value => '', :size => 50, id: :autocomplete, prompt: :'Enter your full address', onFocus: :"geolocate()" %>
             <div class='alert-danger'>
               <p>
               <%= show_errors(@property.address, :country) %>
@@ -47,26 +34,26 @@
   </tr>
   <tr>
     <td>
-      <p>
+      <strong>
         <%= f.label :property_type %><br />
-        <%= f.select :property_type, ['room', 'apartment', 'house'], id: :property_type, prompt: 'Select' %>
+        <%= f.select(:property_type, ['room', 'apartment', 'house'], {prompt: 'Select'}, {class: 'form-control' }) %>
         <% f.text_field :property_type, id: :property_type %>
         <p class='alert-danger'>
           <%= show_errors(@property, :property_type) %>
         </p>
-      </p>
+      </strong>
     </td>
   </tr>
   <tr>
     <td>
-      <p>
+      <strong>
         <%= f.label :number_of_rooms %><br />
-        <%= f.select :number_of_rooms, [0, 1, 2, 3, 4, 5], id: :number_of_rooms, prompt: 'Select' %>
+        <%= f.select(:number_of_rooms, [0, 1, 2, 3, 4, 5], {prompt: 'Select'}, {class: 'form-control' }) %>
         <% f.text_field :number_of_rooms, id: :number_of_rooms %>
         <p class='alert-danger'>
           <%= show_errors(@property, :number_of_rooms) %>
         </p>
-      </p>
+      </strong>
     </td>
   </tr>
   <tr>

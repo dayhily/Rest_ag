@@ -1,5 +1,5 @@
 <h1>New Property</h1>
-<%= form_for @property, url: {action: "create"} do |f| %>
+<%= form_for @property, html: {:class => 'form-inline'}, url: {action: "create"} do |f| %>
   <!-- Form for nested model Address -->
   <%= f.fields_for (:address) do |a| %>
     <%= a.hidden_field :country, id: :country %>
