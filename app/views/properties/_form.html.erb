@@ -38,10 +38,10 @@
         <%= f.label :property_type %><br />
         <%= f.select(:property_type, ['room', 'apartment', 'house'], {prompt: 'Select'}, {class: 'form-control' }) %>
         <% f.text_field :property_type, id: :property_type %>
-        <p class='alert-danger'>
-          <%= show_errors(@property, :property_type) %>
-        </p>
       </strong>
+      <p class='alert-danger'>
+          <%= show_errors(@property, :property_type) %>
+      </p>
     </td>
   </tr>
   <tr>
@@ -50,10 +50,10 @@
         <%= f.label :number_of_rooms %><br />
         <%= f.select(:number_of_rooms, [0, 1, 2, 3, 4, 5], {prompt: 'Select'}, {class: 'form-control' }) %>
         <% f.text_field :number_of_rooms, id: :number_of_rooms %>
-        <p class='alert-danger'>
-          <%= show_errors(@property, :number_of_rooms) %>
-        </p>
       </strong>
+      <p class='alert-danger'>
+          <%= show_errors(@property, :number_of_rooms) %>
+      </p>
     </td>
   </tr>
   <tr>
@@ -100,14 +100,3 @@
     <td></td>
   </tr>    
 </table>
-
-
-  
-     
-  
-
-  
-
-  
-
-  

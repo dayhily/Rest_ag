@@ -1,24 +1,32 @@
 <h1>Contact us</h1>
 
 <%= form_for :contact, url: {action: "create"} do |f| %>
-  <p>
+  <table align="center" class="table-property">
+  <tr>
+    <td>
     <%= f.label :email %><br>
     <%= f.text_field :email %><br>
     <p class='alert-danger'>
       <%= show_errors(@contact, :email) %>
     </p>
-   </p>
+    </td>
+   </tr>
     
-  <p>
+  <tr>
+    <td>
     <%= f.label :message %><br>
     <%= f.text_area :message %>
     <p class='alert-danger'>
       <%= show_errors(@contact, :message) %>
     </p>
-  </p>
+    </td>
+  </tr>
     
-  <p>
+  <tr>
+    <td>
     <%= f.submit 'Send message', class: "btn btn-primary" %><br>
-  </p>
+    </td>
+  </tr>
+  </table>
 <% end %>
   
