@@ -1,12 +1,6 @@
 class PropertiesController < ApplicationController
 	def index
-		# If index form is submitted, then do the method 'search' else
-		# show model with 'all' params
-		if params[:commit] = 'Search'
-			search
-		else
-			@property = Property.all
-		end
+		search
   end
 	
 	def new
@@ -57,29 +51,28 @@ class PropertiesController < ApplicationController
 		@opt1_grouped =  @opt1.inject({}) do |options, f|
 			(options[f.country] ||= []) << [f.administrative_area_level_1]
 			options
-		end
-		
+		end		
 		@opt2 = Address.select('distinct administrative_area_level_1, locality')
 		@opt2_grouped =  @opt2.inject({}) do |options, f|
 			(options[f.administrative_area_level_1] ||= []) << [f.locality]
 			options
 		end
-					
-    limit = 10
+
 		country = params[:country] || nil
-    administrative_area = params[:administrative_area] || nil
-    locality = params[:locality] || nil
-    property_type = params[:property_type] || nil
-    #Joining addresses table to properties table by a single associated model
-    #for search
+		administrative_area = params[:administrative_area] || nil
+		locality = params[:locality] || nil
+		property_type = params[:property_type] || nil
+		#Joining addresses table to properties table by a single associated model
+		#for searching sorted with 'created_at'
 		@property = Property.joins(:address)
-								.where('country LIKE ?'\
-								'and administrative_area_level_1 LIKE ?'\
-								'and locality LIKE ?'\
-								'and property_type LIKE ?',
-								"%#{country}%", "%#{administrative_area}%", "%#{locality}%", "%#{property_type}%")
-								.limit(limit).page params[:page]
-    render action: 'index'
+							.where('country LIKE ?'\
+							'and administrative_area_level_1 LIKE ?'\
+							'and locality LIKE ?'\
+							'and property_type LIKE ?',
+							"%#{country}%", "%#{administrative_area}%", "%#{locality}%", "%#{property_type}%")
+							.page(params[:page])
+							.order('created_at DESC')
+		render action: 'index'
   end
 
 private

@@ -7,52 +7,34 @@
     $("#property_type").select2({
       minimumResultsForSearch: -1
     });
-    $(".clearSelect2").on("click", function () {
-      $("#country").val(null).trigger("change"); 
-      $("#administrative_area").val(null).trigger("change");
-      $("#locality").val(null).trigger("change");
-      $("#property_type").val(null).trigger("change");
-    });
   });
 </script>
-<table width="100%" align="center" class="table-property">
-  <tr>
-    <%= form_tag search_properties_path, method: :get do %>
+<%= form_tag search_properties_path, method: :get do %>
+  <table width="100%" align="center" class="table-property">
+    <tr>
       <!-- Select unique data from Property params with first 'Select' value -->      
       <th>
         <%= label_tag :country %>
-        <%= select_tag :country, options_from_collection_for_select(Address.select('distinct country'), :country, :country, :selected=> params[:country]), prompt: "Select" %>
+        <%= select_tag :country, options_from_collection_for_select(Address.select('distinct country'), :country, :country), prompt: "Select" %>
       </th>
       <th>
         <%= label_tag :administrative_area %>
-        <%= select_tag :administrative_area, grouped_options_for_select(@opt1_grouped, params[:administrative_area]), prompt: "Select" %>
+        <%= select_tag :administrative_area, grouped_options_for_select(@opt1_grouped), prompt: "" %>
       </th>
       <th>
         <%= label_tag :locality %>
-        <%= select_tag :locality, grouped_options_for_select(@opt2_grouped, params[:locality]), prompt: "Select" %>
+        <%= select_tag :locality, grouped_options_for_select(@opt2_grouped), prompt: "" %>
       </th>
       <th>
         <%= label_tag :property_type %>
-        <%= select_tag :property_type, options_from_collection_for_select(Property.select('distinct property_type'), :property_type, :property_type, :selected=> params[:property_type]), prompt: "Select" %>
-      </th>
-      <th>
-        <%= button_tag "Clear search", class: "btn btn-primary clearSelect2" %>
+        <%= select_tag :property_type, options_from_collection_for_select(Property.select('distinct property_type'), :property_type, :property_type), prompt: "" %>
       </th>
       <th>
         <%= submit_tag "Search", class: "btn btn-primary" %>
       </th>
-    <% end %>
-  </tr>
-</table>
-
-
-<script>
-  $('select option')
-    .filter(function() {
-      return !this.text || $.trim(this.text).length == 0;
-    })
-  .remove();
-</script>
+    </tr>
+  </table>
+<% end %>
 
 <table width="100%" align="center" class="table-striped table-property">
   <thead>
