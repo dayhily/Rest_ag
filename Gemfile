@@ -45,6 +45,7 @@ gem 'google-api-client', '~> 0.11'
 gem "mime-types"
 gem "select2-rails"
 gem 'kaminari'
+gem 'devise', '~> 4.4'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
