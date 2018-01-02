@@ -19,6 +19,12 @@
             <span class="icon-bar"></span>
           </button>
           <%= link_to 'Real estate "Property"', root_path, :class=>"navbar-brand" %>
+            <% if user_signed_in? %>
+              <% welcome_username = 'Hi, ' + current_user.username + '!' %>
+              <div class="visible-xs-block" style="margin: 15px 75px" align="right">
+                <%= welcome_username %>
+              </div>
+            <% end %>
         </div>
     
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -31,8 +37,12 @@
             <li><%= link_to 'New Property', new_property_path %></li>
             <li><%= link_to 'Contacts', new_contacts_path %></li>
             <li><%= link_to 'About', '' %></li>
-            <li><%= link_to "Sign In", '' %></li>
-            <li><%= link_to "Sign Up", '' %></li>
+            <% unless user_signed_in? %>
+              <li><%= link_to "Log in", new_user_session_path %></li>
+              <li><%= link_to "Sign up", new_user_registration_path %></li>
+            <% else %>
+              <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+            <% end %>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
