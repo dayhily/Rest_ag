@@ -1,22 +1,20 @@
 class ImagesController < ApplicationController
-before_action :set_property
+before_action :authenticate_user!, :only => [:create, :destroy]
 	def create
+		@property = Property.find(params[:property_id])
 		add_more_images(images_params[:images].to_a)
 		@property.save
 		redirect_to edit_property_path(@property)
 	end
 	
 	def destroy
+		@property = Property.find(params[:property_id])
 		remove_image_at_index(params[:id].to_i)
 		@property.save
 		redirect_to edit_property_path(@property)
 	end
 
 private
-		def set_property
-			@property = Property.find(params[:property_id])
-		end
-
 		def add_more_images(new_images)			
 			images = @property.images 
 			images += new_images

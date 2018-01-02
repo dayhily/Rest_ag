@@ -1,4 +1,5 @@
 class PropertiesController < ApplicationController
+	before_action :authenticate_user!, :only => [:new, :create, :edit, :destroy]
 	def index
 		search
   end
@@ -10,6 +11,7 @@ class PropertiesController < ApplicationController
 		
 	def create
 		@property = Property.new(property_params)
+		@property.user_id = current_user.id
 		if @property.valid?
 			@property.save
 			redirect_to @property
@@ -39,9 +41,16 @@ class PropertiesController < ApplicationController
 	
 	def destroy
 		@property = Property.find(params[:id])
-		@property.remove_images!
-		@property.destroy
-		redirect_to properties_path
+		unless current_user.blank?
+			if current_user.id == @property.user_id
+				@property.remove_images!
+				@property.destroy
+				redirect_to properties_path
+			else
+				@property = Property.all
+				render action: 'index'
+			end
+		end
 	end
 	
 	#Search in model by params from index 'properties#search'
@@ -77,7 +86,7 @@ class PropertiesController < ApplicationController
 
 private
 	def property_params
-		params.require(:property).permit(:property_type, :number_of_rooms,
+		params.require(:property).permit(:id, :property_type, :number_of_rooms,
 		:area_size, :property_price, :description, :images_cache, images: [],
 		address_attributes: [:country, :administrative_area_level_1, :locality,
 		:route, :street_number, :postal_code])

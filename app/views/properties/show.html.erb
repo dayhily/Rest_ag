@@ -63,7 +63,11 @@
 </table>
 <nav aria-label="...">
   <ul class="pager">
-    <li><%= link_to 'Edit', edit_property_path(@property) %></li>
+    <% unless current_user.blank? %>
+      <% if current_user.id == @property.user_id %>
+        <li><%= link_to 'Edit', edit_property_path(@property) %></li>
+      <% end %>
+    <% end %>
     <li><%= link_to 'Back', :back %></li>
   </ul>
 </nav>

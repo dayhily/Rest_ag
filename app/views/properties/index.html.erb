@@ -69,8 +69,14 @@
         <td><%= property.area_size %></td>
         <td><%= property.property_price %></td>
         <td><%= link_to 'Show', property %></td>
-        <td><%= link_to 'Edit', edit_property_path(property) %></td>
-        <td><%= link_to 'Destroy', property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% unless current_user.blank? %>
+          <% if current_user.id == property.user_id %>
+            <td><%= link_to 'Edit', edit_property_path(property) %></td>
+            <td><%= link_to 'Destroy', property,
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        <% end %>
       </tr>
     <% end %>
     <tr>
