@@ -13,6 +13,9 @@ class PropertiesController < ApplicationController
 		@property = Property.new(property_params)
 		@property.user_id = current_user.id
 		if @property.valid?
+			if @property.address.administrative_area_level_1.blank?
+				@property.address.administrative_area_level_1="-blank-"
+			end
 			@property.save
 			redirect_to @property
     else

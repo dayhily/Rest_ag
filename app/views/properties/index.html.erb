@@ -59,7 +59,9 @@
         </td>
         <td>
             <%= property.address.country %>,
-            <%= property.address.administrative_area_level_1 %>,
+            <% unless property.address.administrative_area_level_1 == "-blank-" %>
+              <%= property.address.administrative_area_level_1 %>,
+            <% end %>
             <%= property.address.locality %>,
             <%= property.address.route %>,
             <%= property.address.street_number %>
