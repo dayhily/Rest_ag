@@ -1,4 +1,3 @@
-<h1>Edit Property</h1>
 <%= form_for @property, url: property_images_path(@property), method: :post do |f| %>
   <%= render partial: 'editimage', locals: { f: f } %>
 <% end %>
