@@ -7,4 +7,5 @@ Rails.application.routes.draw do
     get 'search', on: :collection
   end
   resource :contacts, :only => [:new, :create], path_names:{:new => ''}
+  get 'about' => 'pages#about'
 end
