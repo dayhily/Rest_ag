@@ -7,7 +7,7 @@ Style/Documentation:
 Metrics/MethodLength:
   Max: 30
 Metrics/LineLength:
-  Max: 120
+  Max: 165
 Style/ClassAndModuleChildren:
   Exclude:
     - test/test_helper.rb

@@ -1,4 +1,4 @@
 class Address < ApplicationRecord
-	belongs_to :property, inverse_of: :address
-	validates_presence_of :country, :locality, :route, :street_number
+  belongs_to :property, inverse_of: :address
+  validates :country, :locality, :route, :street_number, presence: true
 end

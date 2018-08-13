@@ -4,11 +4,10 @@ class ImagesUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
-
   # Choose what kind of storage to use for this uploader:
   # storage :file
   storage :fog
-  
+
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
@@ -34,7 +33,7 @@ class ImagesUploader < CarrierWave::Uploader::Base
   version :thumb do
     process resize_to_fit: [200, 200]
   end
-  
+
   version :small_thumb, from_version: :thumb do
     process resize_to_fit: [80, 80]
   end
@@ -42,14 +41,14 @@ class ImagesUploader < CarrierWave::Uploader::Base
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_whitelist
-    %w(jpg jpeg gif png)
+    %w[jpg jpeg gif png]
   end
-  
+
   # Let's say we need an uploader that accepts only images.
   def content_type_whitelist
     /image\//
   end
-  
+
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   # def filename
@@ -58,21 +57,19 @@ class ImagesUploader < CarrierWave::Uploader::Base
   def filename
     "#{secure_token}.#{file.extension}" if original_filename.present?
   end
-  
+
   protected
-    def secure_token
-      media_original_filenames_var = :"@#{mounted_as}_original_filenames"
-  
-      unless model.instance_variable_get(media_original_filenames_var)
-        model.instance_variable_set(media_original_filenames_var, {})
-      end
-  
-      unless model.instance_variable_get(media_original_filenames_var).map{|k,v| k }.include? original_filename.to_sym
-        new_value = model.instance_variable_get(media_original_filenames_var).merge({"#{original_filename}": SecureRandom.uuid})
-        model.instance_variable_set(media_original_filenames_var, new_value)
-      end
-  
-      model.instance_variable_get(media_original_filenames_var)[original_filename.to_sym]
+
+  def secure_token
+    media_original_filenames_var = :"@#{mounted_as}_original_filenames"
+
+    model.instance_variable_set(media_original_filenames_var, {}) unless model.instance_variable_get(media_original_filenames_var)
+
+    unless model.instance_variable_get(media_original_filenames_var).map { |k, _v| k }.include? original_filename.to_sym
+      new_value = model.instance_variable_get(media_original_filenames_var).merge("#{original_filename}": SecureRandom.uuid)
+      model.instance_variable_set(media_original_filenames_var, new_value)
     end
 
+    model.instance_variable_get(media_original_filenames_var)[original_filename.to_sym]
+  end
 end
