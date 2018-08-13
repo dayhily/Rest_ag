@@ -53,6 +53,9 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'rubocop', '~> 0.58.2', require: false
+  gem 'factory_bot_rails'
+  gem 'rspec'
 end
 
 group :development do
