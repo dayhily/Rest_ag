@@ -40,9 +40,9 @@ ActiveRecord::Schema.define(version: 20180102072256) do
     t.integer "number_of_rooms"
     t.integer "area_size"
     t.integer "property_price"
+    t.string "images", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "images", default: [], array: true
     t.string "description"
     t.integer "user_id"
     t.index ["images"], name: "index_properties_on_images"
